@@ -8,7 +8,7 @@ if ("${LIBRARY_INSTALL_DESTINATION}" STREQUAL "")
    set(LIBRARY_INSTALL_DESTINATION ${CMAKE_SOURCE_DIR}/host)
 endif()
 
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED system)
 
 include_directories(
    include
@@ -19,6 +19,9 @@ set(${PROJECT_NAME}_PUBLIC_INCLUDES include/ICSE/_013A.hpp)
 add_library(${PROJECT_NAME}
    include/ICSE/_013A.hpp
    src/_013A.cpp)
+
+target_link_libraries(${PROJECT_NAME}
+   ${Boost_LIBRARIES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${${PROJECT_NAME}_PUBLIC_INCLUDES}")
 
